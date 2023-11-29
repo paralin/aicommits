@@ -4,7 +4,7 @@ const commitTypeFormats: Record<CommitType, string> = {
 	'': '<commit message>',
 	conventional: '<type>(<optional scope>): <commit message>',
 };
-const specifyCommitFormat = (type: CommitType) => `The output response must be in format:\n${commitTypeFormats[type]}`;
+const specifyCommitFormat = (type: CommitType) => `The output response must be lowercase in format:\n${commitTypeFormats[type]}`;
 
 const commitTypes: Record<CommitType, string> = {
 	'': '',
