@@ -2,9 +2,9 @@ import type { CommitType } from './config.js';
 
 const commitTypeFormats: Record<CommitType, string> = {
 	'': '<commit message>',
-	conventional: '<type>(<optional scope>): <commit message>',
+	conventional: '<type>(<optional short scope>): <succinct commit message>',
 };
-const specifyCommitFormat = (type: CommitType) => `The output response must be lowercase in format:\n${commitTypeFormats[type]}`;
+const specifyCommitFormat = (type: CommitType) => `The output response must be in format:\n${commitTypeFormats[type]}`;
 
 const commitTypes: Record<CommitType, string> = {
 	'': '',
@@ -39,10 +39,10 @@ export const generatePrompt = (
 	maxLength: number,
 	type: CommitType,
 ) => [
-	'Generate a concise git commit message written in present tense for the following code diff with the given specifications below:',
+	'Generate a concise git commit message written in present tense for the following git diff:',
 	`Message language: ${locale}`,
 	`Commit message must be a maximum of ${maxLength} characters.`,
-	'Exclude anything unnecessary such as translation. Your entire response will be passed directly into git commit.',
+	'Exclude anything other than the commit message. Your entire response will be passed directly into git commit.',
 	commitTypes[type],
 	specifyCommitFormat(type),
 ].filter(Boolean).join('\n');
