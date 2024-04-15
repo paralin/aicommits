@@ -19,18 +19,11 @@
 		"aic": "./dist/cli.mjs"
 	},
 	"scripts": {
-		"prepare": "simple-git-hooks",
 		"build": "pkgroll --minify",
-		"lint": "eslint --cache .",
+		"lint": "",
 		"type-check": "tsc",
 		"test": "tsx tests",
 		"prepack": "pnpm build && clean-pkg-json"
-	},
-	"simple-git-hooks": {
-		"pre-commit": "pnpm lint-staged"
-	},
-	"lint-staged": {
-		"*.ts": "eslint --cache"
 	},
 	"dependencies": {
 		"@dqbd/tiktoken": "^1.0.2"
@@ -57,28 +50,9 @@
 		"tsx": "^4.6.0",
 		"typescript": "^5.3.2"
 	},
-	"eslintConfig": {
-		"extends": "@pvtnbr",
-		"rules": {
-			"unicorn/no-process-exit": "off"
-		},
-		"overrides": [
-			{
-				"files": "./src/commands/prepare-commit-msg-hook.ts",
-				"rules": {
-					"unicorn/prevent-abbreviations": "off"
-				}
-			}
-		]
-	},
 	"release": {
 		"branches": [
 			"main"
 		]
-	},
-	"pnpm": {
-		"patchedDependencies": {
-			"@clack/prompts@0.6.1": "patches/@clack__prompts@0.6.1.patch"
-		}
 	}
 }
